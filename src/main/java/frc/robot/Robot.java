@@ -23,14 +23,23 @@ public class Robot extends TimedRobot {
   private BallSupervisor ballSupervisor;
   private Climber climber;
 
-
   @Override
   public void robotInit() {
-    HotLogger.Setup("Theta", "Left Front Absolute", "Left Front Assumed", 
-                "Right Front Absolute", "Right Front Assumed",
-                "Left Rear Absolute", "Left Rear Assumed",
-                "Right Rear Absolute", "Right Rear Assumed", "ClimberCmd", 
-                "LeftIntakeCmd", "RightIntakeCmd", "LeftShooterSpeed", "RightShooterSpeed");
+    HotLogger.Setup(
+                    // Pigeon
+                    "Theta",
+                    // Drivetrain
+                    "Left Front Steer Absolute", "Left Front Steer Assumed", 
+                    "Right Front Steer Absolute", "Right Front Steer Assumed",
+                    "Left Rear Steer Absolute", "Left Rear Steer Assumed",
+                    "Right Rear Steer Absolute", "Right Rear Steer Assumed",
+                    "Left Front Drive", "Right Front Drive", "Left Rear Drive", "Right Rear Drive",
+                    // Climber
+                    "ClimberCmd", 
+                    // Intake
+                    "LeftIntakeCmd", "RightIntakeCmd",
+                    // Shooter
+                    "LeftShooterSpeed", "RightShooterSpeed");
 
     robotState = new RobotState();
     hub = new PneumaticHub(PNEUMATIC_HUB);

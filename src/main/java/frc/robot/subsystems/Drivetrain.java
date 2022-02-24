@@ -209,7 +209,23 @@ public class Drivetrain extends SubsystemBase{
 
     @Override
     public void logData() {
+        // Absolute Steer Encoders
+        log("Left Front Steer Absolute", frontLeftEncoder.getAbsolutePosition());
+        log("Right Front Steer Absolute", frontRightEncoder.getAbsolutePosition());
+        log("Left Rear Steer Absolute", backLeftEncoder.getAbsolutePosition());
+        log("Right Rear Steer Absolute", backRightEncoder.getAbsolutePosition());
 
+        // Assumed Steer Encoders
+        log("Left Front Steer Assumed", frontLeftSteer.getSelectedSensorPosition());
+        log("Right Front Steer Assumed", frontRightSteer.getSelectedSensorPosition());
+        log("Left Rear Steer Assumed", backLeftSteer.getSelectedSensorPosition());
+        log("Right Rear Steer Assumed", backRightSteer.getSelectedSensorPosition());
+
+        // Drive Encoders
+        log("Left Front Drive", frontLeftDrive.getSelectedSensorPosition());
+        log("Right Front Drive", frontRightDrive.getSelectedSensorPosition());
+        log("Left Rear Drive", backLeftDrive.getSelectedSensorPosition());
+        log("Right Rear Drive", backRightDrive.getSelectedSensorPosition());
     }
 
     public void setBrakeMode(boolean brakes){

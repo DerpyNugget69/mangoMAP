@@ -44,9 +44,7 @@ public class Pigeon extends SensorBase{
     @Override
     public void logData() {
         // TODO Auto-generated method stub
-        SmartDashboard.putNumber("Theta", theta);
-
-        HotLogger.Log("Theta", theta);
+        log("Theta", theta);
     }
     
 }
