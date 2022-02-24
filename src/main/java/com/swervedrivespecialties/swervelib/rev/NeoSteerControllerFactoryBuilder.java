@@ -167,5 +167,15 @@ public final class NeoSteerControllerFactoryBuilder {
 
             return motorAngleRadians;
         }
+
+        @Override
+        public Object getSteerMotor() {
+            return motor;
+        }
+
+        @Override
+        public AbsoluteEncoder getSteerEncoder() {
+            return absoluteEncoder;
+        }
     }
 }
