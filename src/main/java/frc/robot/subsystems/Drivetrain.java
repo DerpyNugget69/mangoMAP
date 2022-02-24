@@ -31,6 +31,21 @@ public class Drivetrain extends SubsystemBase{
     private final SwerveModule backLeftModule;
     private final SwerveModule backRightModule;
 
+    private final TalonFX frontLeftDrive;
+    private final TalonFX frontRightDrive;
+    private final TalonFX backLeftDrive;
+    private final TalonFX backRightDrive;
+
+    private final TalonFX frontLeftSteer;
+    private final TalonFX frontRightSteer;
+    private final TalonFX backLeftSteer;
+    private final TalonFX backRightSteer;
+    
+    private final CANCoder frontLeftEncoder;
+    private final CANCoder frontRightEncoder;
+    private final CANCoder backLeftEncoder;
+    private final CANCoder backRightEncoder;
+
     private ChassisSpeeds chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
     private SwerveModuleState[] states;
@@ -133,10 +148,27 @@ public class Drivetrain extends SubsystemBase{
                     BACK_RIGHT_MODULE_STEER_OFFSET
             );
         }
+
+        frontLeftDrive = (TalonFX) frontLeftModule.getDriveMotor();
+        frontRightDrive = (TalonFX) frontRightModule.getDriveMotor();
+        backLeftDrive = (TalonFX) backLeftModule.getDriveMotor();
+        backRightDrive = (TalonFX) backRightModule.getDriveMotor();
+        
+        frontLeftSteer = (TalonFX) frontLeftModule.getSteerMotor();
+        frontRightSteer = (TalonFX) frontRightModule.getSteerMotor();
+        backLeftSteer = (TalonFX) backLeftModule.getSteerMotor();
+        backRightSteer = (TalonFX) backRightModule.getSteerMotor();
+
+        frontLeftEncoder = (CANCoder) frontLeftModule.getSteerEncoder();
+        frontRightEncoder = (CANCoder) frontRightModule.getSteerEncoder();
+        backLeftEncoder = (CANCoder) backLeftModule.getSteerEncoder();
+        backRightEncoder = (CANCoder) backRightModule.getSteerEncoder();
     }
 
     @Override
     public void enabledAction(RobotState robotState, RobotCommander commander) {        
+        setBrakeMode(true);
+        
         chassisSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
             commander.getForwardCommand(),
             commander.getStrafeCommand(),
@@ -154,7 +186,7 @@ public class Drivetrain extends SubsystemBase{
 
     @Override
     public void disabledAction(RobotState robotState) {
-        // setBrakeMode(false);
+        setBrakeMode(false);
     }
 
     @Override
@@ -181,6 +213,26 @@ public class Drivetrain extends SubsystemBase{
     }
 
     public void setBrakeMode(boolean brakes){
+        if(brakes){
+                frontLeftDrive.setNeutralMode(NeutralMode.Brake);
+                frontRightDrive.setNeutralMode(NeutralMode.Brake);
+                backLeftDrive.setNeutralMode(NeutralMode.Brake);
+                backRightDrive.setNeutralMode(NeutralMode.Brake);
 
+                frontLeftSteer.setNeutralMode(NeutralMode.Brake);
+                frontRightSteer.setNeutralMode(NeutralMode.Brake);
+                backLeftSteer.setNeutralMode(NeutralMode.Brake);
+                backRightSteer.setNeutralMode(NeutralMode.Brake);
+        } else {
+                frontLeftDrive.setNeutralMode(NeutralMode.Coast);
+                frontRightDrive.setNeutralMode(NeutralMode.Coast);
+                backLeftDrive.setNeutralMode(NeutralMode.Coast);
+                backRightDrive.setNeutralMode(NeutralMode.Coast);
+
+                frontLeftSteer.setNeutralMode(NeutralMode.Coast);
+                frontRightSteer.setNeutralMode(NeutralMode.Coast);
+                backLeftSteer.setNeutralMode(NeutralMode.Coast);
+                backRightSteer.setNeutralMode(NeutralMode.Coast);
+        }
     }
 }
