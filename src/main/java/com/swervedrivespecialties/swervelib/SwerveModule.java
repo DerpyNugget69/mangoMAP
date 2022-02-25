@@ -12,7 +12,7 @@ public interface SwerveModule {
 
     Object getSteerMotor();
 
-    AbsoluteEncoder getSteerEncoder();
+    CANCoder getSteerEncoder();
 
     void set(double driveVoltage, double steerAngle);
 }

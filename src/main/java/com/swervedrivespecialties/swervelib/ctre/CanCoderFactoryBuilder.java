@@ -7,6 +7,8 @@ import com.ctre.phoenix.sensors.CANCoderStatusFrame;
 import com.swervedrivespecialties.swervelib.AbsoluteEncoder;
 import com.swervedrivespecialties.swervelib.AbsoluteEncoderFactory;
 
+import edu.wpi.first.wpilibj.CAN;
+
 public class CanCoderFactoryBuilder {
     private Direction direction = Direction.COUNTER_CLOCKWISE;
     private int periodMilliseconds = 10;
@@ -53,6 +55,10 @@ public class CanCoderFactoryBuilder {
             }
 
             return angle;
+        }
+
+        public CANCoder getSteerEncoder(){
+            return encoder;
         }
     }
 

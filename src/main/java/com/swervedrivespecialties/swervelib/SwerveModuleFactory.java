@@ -1,6 +1,7 @@
 package com.swervedrivespecialties.swervelib;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.sensors.CANCoder;
 
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardLayout;
@@ -70,8 +71,8 @@ public class SwerveModuleFactory<DriveConfiguration, SteerConfiguration> {
         }
 
         @Override
-        public AbsoluteEncoder getSteerEncoder() {
-            return steerController.getSteerEncoder();
+        public CANCoder getSteerEncoder() {
+            return steerController.getSteerEncoder().getSteerEncoder();
         }
 
         @Override

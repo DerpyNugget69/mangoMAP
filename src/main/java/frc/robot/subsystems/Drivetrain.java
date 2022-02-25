@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
+import com.swervedrivespecialties.swervelib.AbsoluteEncoder;
 import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
 import com.swervedrivespecialties.swervelib.Mk4iSwerveModuleHelper;
 import com.swervedrivespecialties.swervelib.SwerveModule;
@@ -31,20 +32,20 @@ public class Drivetrain extends SubsystemBase{
     private final SwerveModule backLeftModule;
     private final SwerveModule backRightModule;
 
-    private final TalonFX frontLeftDrive;
-    private final TalonFX frontRightDrive;
-    private final TalonFX backLeftDrive;
-    private final TalonFX backRightDrive;
+    private TalonFX frontLeftDrive;
+    private TalonFX frontRightDrive;
+    private TalonFX backLeftDrive;
+    private TalonFX backRightDrive;
 
-    private final TalonFX frontLeftSteer;
-    private final TalonFX frontRightSteer;
-    private final TalonFX backLeftSteer;
-    private final TalonFX backRightSteer;
+    private TalonFX frontLeftSteer;
+    private TalonFX frontRightSteer;
+    private TalonFX backLeftSteer;
+    private TalonFX backRightSteer;
     
-    private final CANCoder frontLeftEncoder;
-    private final CANCoder frontRightEncoder;
-    private final CANCoder backLeftEncoder;
-    private final CANCoder backRightEncoder;
+    private CANCoder frontLeftEncoder;
+    private CANCoder frontRightEncoder;
+    private CANCoder backLeftEncoder;
+    private CANCoder backRightEncoder;
 
     private ChassisSpeeds chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
 
@@ -159,10 +160,10 @@ public class Drivetrain extends SubsystemBase{
         backLeftSteer = (TalonFX) backLeftModule.getSteerMotor();
         backRightSteer = (TalonFX) backRightModule.getSteerMotor();
 
-        frontLeftEncoder = (CANCoder) frontLeftModule.getSteerEncoder();
-        frontRightEncoder = (CANCoder) frontRightModule.getSteerEncoder();
-        backLeftEncoder = (CANCoder) backLeftModule.getSteerEncoder();
-        backRightEncoder = (CANCoder) backRightModule.getSteerEncoder();
+        frontLeftEncoder = frontLeftModule.getSteerEncoder();
+        frontRightEncoder = frontRightModule.getSteerEncoder();
+        backLeftEncoder = backLeftModule.getSteerEncoder();
+        backRightEncoder = backRightModule.getSteerEncoder();
     }
 
     @Override
@@ -191,7 +192,21 @@ public class Drivetrain extends SubsystemBase{
 
     @Override
     public void updateState() {
+        // Constantly update the motors and encoders
+        frontLeftDrive = (TalonFX) frontLeftModule.getDriveMotor();
+        frontRightDrive = (TalonFX) frontRightModule.getDriveMotor();
+        backLeftDrive = (TalonFX) backLeftModule.getDriveMotor();
+        backRightDrive = (TalonFX) backRightModule.getDriveMotor();
         
+        frontLeftSteer = (TalonFX) frontLeftModule.getSteerMotor();
+        frontRightSteer = (TalonFX) frontRightModule.getSteerMotor();
+        backLeftSteer = (TalonFX) backLeftModule.getSteerMotor();
+        backRightSteer = (TalonFX) backRightModule.getSteerMotor();
+
+        frontLeftEncoder = frontLeftModule.getSteerEncoder();
+        frontRightEncoder = frontRightModule.getSteerEncoder();
+        backLeftEncoder = backLeftModule.getSteerEncoder();
+        backRightEncoder = backRightModule.getSteerEncoder();
     }
 
     @Override
@@ -210,10 +225,10 @@ public class Drivetrain extends SubsystemBase{
     @Override
     public void logData() {
         // Absolute Steer Encoders
-        log("Left Front Steer Absolute", frontLeftEncoder.getAbsolutePosition());
-        log("Right Front Steer Absolute", frontRightEncoder.getAbsolutePosition());
-        log("Left Rear Steer Absolute", backLeftEncoder.getAbsolutePosition());
-        log("Right Rear Steer Absolute", backRightEncoder.getAbsolutePosition());
+        log("Left Front Steer Absolute", Math.toDegrees(frontLeftEncoder.getAbsolutePosition()));
+        log("Right Front Steer Absolute", Math.toDegrees(frontRightEncoder.getAbsolutePosition()));
+        log("Left Rear Steer Absolute", Math.toDegrees(backLeftEncoder.getAbsolutePosition()));
+        log("Right Rear Steer Absolute", Math.toDegrees(backRightEncoder.getAbsolutePosition()));
 
         // Assumed Steer Encoders
         log("Left Front Steer Assumed", frontLeftSteer.getSelectedSensorPosition());
