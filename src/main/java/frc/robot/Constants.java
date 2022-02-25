@@ -70,5 +70,7 @@ public final class Constants {
     public static final int CLIMBER_RELEASE_SOLENOID = 8;
 
     public static final int CLIMBER_MOTOR = 13;
+
+    // public static final int LED_LIGHT_STRIP = 22;
     
 }
