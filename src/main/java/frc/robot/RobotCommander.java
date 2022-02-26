@@ -5,5 +5,6 @@ import javax.swing.text.AbstractDocument.AbstractElement;
 public abstract class RobotCommander {
     
     public abstract double getTurnCommand();
+    public abstract boolean getZeroEncoders();
 
 }

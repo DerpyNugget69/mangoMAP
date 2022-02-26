@@ -17,7 +17,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    HotLogger.Setup("Theta");
+    HotLogger.Setup("motorEncoder", "canEncoder", "motorDeg", "RS_leftX",
+     "RS_CANCoderTheta", "RS_MotorEncoderTheta", "motorCmd");
 
     robotState = new RobotState();
     teleopCommander = new TeleopCommander(robotState);

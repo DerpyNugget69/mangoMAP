@@ -3,10 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
-import com.swervedrivespecialties.swervelib.Mk4SwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.Mk4iSwerveModuleHelper;
-import com.swervedrivespecialties.swervelib.SwerveModule;
-
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import org.hotutilites.hotlogger.HotLogger;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.AutonCommader;
@@ -22,16 +19,23 @@ private RobotState robotState;
 double canEncoder;
 double motorEncoder;
 double motorDeg;
+double motorCmd;
 
 public Drivetrain(RobotState robotState) {
         canCoder = new CANCoder(ABSOLUTE_ENCODER);
         turnTalonFX = new TalonFX(TURN_MOTOR);
         this.robotState = robotState;
+        this.zeroSensor();
 }
 
  @Override
 public void enabledAction(RobotState robotState, RobotCommander commander) {
         this.setTurnBrake(true);
+        motorCmd = commander.getTurnCommand();
+        if (commander.getZeroEncoders()) {
+                this.zeroSensor();
+        }
+        turnTalonFX.set(ControlMode.PercentOutput, motorCmd);
                 
 }
 
@@ -67,6 +71,20 @@ public void zeroSensor() {
 
 @Override
 public void logData() {
+        HotLogger.Log("motorEncoder", motorEncoder);
+        SmartDashboard.putNumber("motorEncoder", motorEncoder);
+        HotLogger.Log("canEncoder", canEncoder);
+        SmartDashboard.putNumber("canEncoder", canEncoder);
+        HotLogger.Log("motorDeg", motorDeg);
+        SmartDashboard.putNumber("motorDeg", motorDeg);
+        HotLogger.Log("RS_leftX", robotState.getDriver().getLeftX());
+        SmartDashboard.putNumber("RS_leftX", robotState.getDriver().getLeftX());
+        HotLogger.Log("RS_CANCoderTheta", robotState.getCANCoderTheta());
+        SmartDashboard.putNumber("RS_CANCoderTheta", robotState.getCANCoderTheta());
+        HotLogger.Log("RS_MotorEncoderTheta", robotState.getMotorEncoderTheta());
+        SmartDashboard.putNumber("RS_MotorEncoderTheta", robotState.getMotorEncoderTheta());
+        HotLogger.Log("motorCmd", motorCmd);
+        SmartDashboard.putNumber("motorCmd", motorCmd);
                 
 }
 

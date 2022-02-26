@@ -10,7 +10,7 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 
 public final class Constants {
 
-    public static final int TURN_MOTOR = 14;
-    public static final int ABSOLUTE_ENCODER = 15;
+    public static final int TURN_MOTOR = 2;
+    public static final int ABSOLUTE_ENCODER = 1;
     
 }

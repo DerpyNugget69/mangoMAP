@@ -32,6 +32,13 @@ public class TeleopCommander extends RobotCommander{
     public double getTurnCommand() {
       return deadband(robotState.getDriver().getLeftX(), 0.25, 0.2);
     }
+
+
+
+    @Override
+    public boolean getZeroEncoders() {
+      return robotState.getDriver().getAButton();
+    }
     
 
 

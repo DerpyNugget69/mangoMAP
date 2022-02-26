@@ -16,5 +16,11 @@ public class AutonCommader extends RobotCommander{
         return 0;
     }
 
+    @Override
+    public boolean getZeroEncoders() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 
 }
