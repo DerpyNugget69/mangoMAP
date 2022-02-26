@@ -1,15 +1,32 @@
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Rotation2d;
+import org.hotutilites.hotcontroller.HotController;
 
 public class RobotState {
-    private double theta;
+    private double CANCoderTheta; // Degrees
+    private double motorEncoderTheta; // Degrees
+    private HotController driver;
+    
+    driver = new HotController(0);
 
-    public void setTheta(double theta){
-        this.theta = theta;
+    public HotController getDriver() {
+        return driver;
     }
 
-    public double getTheta(){
-        return this.theta;
+    public void setCANCoderTheta(double CANCoderTheta) {
+        this.CANCoderTheta = CANCoderTheta;
     }
+
+    public double getCANCoderTheta() {
+        return CANCoderTheta;
+    }
+
+    public void setMotorEncoderTheta(double motorEncoderTheta) {
+        this.motorEncoderTheta = motorEncoderTheta;
+    }
+
+    public double getMotorEncoderTheta() {
+        return motorEncoderTheta;
+    }
+
 }
