@@ -17,11 +17,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void robotInit() {
-    HotLogger.Setup("Theta", "Left Front Absolute", "Left Front Assumed", 
-                "Right Front Absolute", "Right Front Assumed",
-                "Left Rear Absolute", "Left Rear Assumed",
-                "Right Rear Absolute", "Right Rear Assumed", "ClimberCmd", 
-                "LeftIntakeCmd", "RightIntakeCmd", "LeftShooterSpeed", "RightShooterSpeed");
+    HotLogger.Setup("Theta");
 
     robotState = new RobotState();
     teleopCommander = new TeleopCommander(robotState);

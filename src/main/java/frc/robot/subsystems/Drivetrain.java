@@ -43,6 +43,12 @@ public void disabledAction(RobotState robotState) {
 
 @Override
 public void updateState() {
+        canEncoder = canCoder.getPosition();
+        motorEncoder = turnTalonFX.getSelectedSensorPosition();
+        motorDeg = (motorEncoder / 122.0);
+
+        robotState.setMotorEncoderTheta(motorDeg);
+        robotState.setCANCoderTheta(canEncoder);
 
 
 }

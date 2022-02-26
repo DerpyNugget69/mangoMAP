@@ -30,7 +30,7 @@ public class TeleopCommander extends RobotCommander{
 
     @Override
     public double getTurnCommand() {
-      return deadband(driver.getLeftX(), 0.3, 0.2);
+      return deadband(robotState.getDriver().getLeftX(), 0.25, 0.2);
     }
     
 

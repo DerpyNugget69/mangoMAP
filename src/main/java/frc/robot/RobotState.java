@@ -1,16 +1,20 @@
 package frc.robot;
 
 import org.hotutilites.hotcontroller.HotController;
+import edu.wpi.first.wpilibj.XboxController;
+import org.hotutilites.hotlogger.HotLogger;
 
 public class RobotState {
     private double CANCoderTheta; // Degrees
+    private static XboxController driver;
     private double motorEncoderTheta; // Degrees
-    private HotController driver;
     
-    driver = new HotController(0);
+    public RobotState() {
+        driver = new XboxController(0);
+    }
 
-    public HotController getDriver() {
-        return driver;
+    public XboxController getDriver() {
+        return this.driver;
     }
 
     public void setCANCoderTheta(double CANCoderTheta) {
